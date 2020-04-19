@@ -103,9 +103,10 @@ func delete(value):
 
 func insert(value):
     print("test")
-    value["id"] = data[collection].increment
-    var res = data[collection].data.append(value)
-    data[collection].increment = value["id"] + 1
+    var res = data[collection].data.append(_join({
+        "id": data[collection].get("increment")
+       }, value))
+    data[collection].increment += 1
     write()
     return res
 
@@ -116,10 +117,7 @@ func update(id, value):
 func _search(col, query):
     var res = 0
     var tab = []
-    
     for line in data[col].data: #on boucle sur chaque ligne de la collection
-        print("line")
-        print(line)
         res = 0
         for d in query: #pour chaque item, on verifie s'il possede toute les propriété et valeur de query
             if not line.has(d): #donc deja si y'a pas la propriété c'est mort

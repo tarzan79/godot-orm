@@ -8,14 +8,50 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "File",
+"class": "JSONFile",
+"language": "GDScript",
+"path": "res://addons/orm/shema-validator/json_file.gd"
+}, {
+"base": "Reference",
+"class": "JSONSchema",
+"language": "GDScript",
+"path": "res://addons/orm/shema-validator/json_schema_validator.gd"
+}, {
+"base": "Resource",
+"class": "JsonFile",
+"language": "GDScript",
+"path": "res://addons/orm/json/json_file.gd"
+}, {
+"base": "Resource",
+"class": "Orm",
+"language": "GDScript",
+"path": "res://addons/orm/orm.gd"
+}, {
+"base": "Resource",
+"class": "Sql",
+"language": "GDScript",
+"path": "res://addons/orm/sqlite/sqlite.gd"
+}, {
+"base": "Node",
+"class": "User_test",
+"language": "GDScript",
+"path": "res://addons/orm/test/user.gd"
+} ]
 _global_script_class_icons={
-
+"JSONFile": "",
+"JSONSchema": "",
+"JsonFile": "",
+"Orm": "",
+"Sql": "",
+"User_test": ""
 }
 
 [application]
 
 config/name="Orm"
+run/main_scene="res://test/test.tscn"
 config/icon="res://icon.png"
 
 [rendering]

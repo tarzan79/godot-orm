@@ -16,16 +16,16 @@ extends Resource
 
 class_name Sql
 
-const SQL = preload("res://lib/gdsqlite.gdns")
-var PATH = "res://database/database.db"
+const SQL = preload("res://addons/orm/lib/sqlite/gdsqlite.gdns")
+var PATH = "res://database.db"
 var collection
 var database
 
 func _init():
     pass
     
-func open(path):
-    PATH = path
+func open(credential):
+    PATH = credential["file"]
     
 func close():
     pass
@@ -55,6 +55,7 @@ func find_one(query):
             where += i + "='" + query[i] + "'"
         index += 1
     var res = array("SELECT * FROM " + collection + where)
+    
     return res[0]
     
 func find(query):
@@ -71,7 +72,7 @@ func find(query):
             index += 1
         return array("SELECT * FROM " + collection + where)
     
-func insert(data):
+func insert_one(data):
     var index = 1
     var query = "INSERT INTO " + collection
     var name = " ("
@@ -134,7 +135,7 @@ func query(query):
     db.open_db(PATH)
     var result = db.query(query)
     db.close()
-#    print(str(result) + ":" + str(query))
+    print(str(result) + ":" + str(query))
     return result
 
 func array(query):
